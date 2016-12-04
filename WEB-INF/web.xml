@@ -3,32 +3,4 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
   version="4.0">
-
-
-<servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>IndexServlet</servlet-class>
-</servlet>
-<servlet>
-        <servlet-name>red</servlet-name>
-        <servlet-class>Redirect</servlet-class>
-</servlet>
-<servlet>
-        <servlet-name>dest</servlet-name>
-        <servlet-class>Dest</servlet-class>
-</servlet>
-
-<servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-        <servlet-name>dest</servlet-name>
-        <url-pattern>/dest</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-        <servlet-name>red</servlet-name>
-        <url-pattern>/red</url-pattern>
-</servlet-mapping>
-
 </web-app>
