@@ -1,21 +1,22 @@
 #!/bin/bash
 
-TOMCAT_HOME=/usr/lib/tomcat
-BASEDIR=/data/testapp
+TOM=/usr/lib/tomcat
+BASE=/data/testapp
+WEB_INF=$BASE/WEB-INF
 
-cd $BASEDIR
+cd $BASE
 
 git checkout .
 git pull
 
-rm -rf work
-mkdir work
+rm -rf $BASE/work
+mkdir $BASE/work
 
-javac $BASEDIR/WEB-INF/src/*.java -classpath /usr/lib/tomcat/lib/servlet-api.jar
+javac $WEB_INF/src/*.java -classpath $TOM/lib/servlet-api.jar
 
-rm -rf $BASEDIR/WEB-INF/classes
-mkdir $BASEDIR/WEB-INF/classes
-mv $BASEDIR/WEB-INF/src/*.class $BASEDIR/WEB-INF/classes
+rm -rf $WEB_INF/classes
+mkdir $WEB_INF/classes
+mv $WEB_INF/src/*.class $WEB_INF/classes
 
-$TOMCAT_HOME/bin/shutdown.sh
-$TOMCAT_HOME/bin/startup.sh
+$TOM/bin/shutdown.sh
+$TOM/bin/startup.sh
