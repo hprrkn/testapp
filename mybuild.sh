@@ -1,10 +1,12 @@
 #!/bin/bash
 
-
+TOMCAT_HOME=/usr/lib/tomcat
 BASEDIR=/data/testapp
 
-
 cd $BASEDIR
+
+git checkout .
+git pull
 
 rm -rf work
 mkdir work
@@ -15,3 +17,5 @@ rm -rf $BASEDIR/WEB-INF/classes
 mkdir $BASEDIR/WEB-INF/classes
 mv $BASEDIR/WEB-INF/*.class $BASEDIR/WEB-INF/classes
 
+$TOMCAT_HOME/bin/shutdown.sh
+$TOMCAT_HOME/bin/startup.sh
