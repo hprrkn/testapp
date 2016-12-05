@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+<project name="testapp" basedir="/data/testapp" default="build.compile">
+
+<property name="TOMCAT_HOME" value="/usr/lib/tomcat"/>
+<property name="WEB_INF" value="${basedir}/WEB-INF"/>
+<property name="classes" value="${WEB_INF}/classes"/>
+<property name="lib" value="${WEB_INF}/lib"/>
+
+<path id="compile.class.path">
+	 <fileset file="${TOMCAT_HOME}/lib/servlet-api.jar"/>
+</path>
+
+<target name="build.compile">
+	<delete dir="${classes}"/>
+	<mkdir dir="${classes}"/>
+  <javac srcdir="${WEB_INF}/src" destdir="${classes}" encoding="UTF-8" debug="on" optimize="off">
+		<classpath refid="compile.class.path"/>
+	</javac>
+</target>
+
+</project>

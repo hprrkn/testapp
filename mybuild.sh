@@ -1,5 +1,9 @@
 #!/bin/bash
 
+ANT=/bin/ant
+PATH=$PATH:/bin/ant
+export PATH
+
 TOM=/usr/lib/tomcat
 BASE=/data/testapp
 WEB_INF=$BASE/WEB-INF
@@ -12,11 +16,7 @@ git pull
 rm -rf $BASE/work
 mkdir $BASE/work
 
-javac $WEB_INF/src/*.java -classpath $TOM/lib/servlet-api.jar
-
-rm -rf $WEB_INF/classes
-mkdir $WEB_INF/classes
-mv $WEB_INF/src/*.class $WEB_INF/classes
+ant -f build.xml
 
 $TOM/bin/shutdown.sh
 $TOM/bin/startup.sh
