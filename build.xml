@@ -10,7 +10,23 @@
 	 <fileset file="${TOMCAT_HOME}/lib/servlet-api.jar"/>
 </path>
 
-<target name="build.compile">
+<target name="jsp.pre.compile">
+	<delete dir="${basedir}/work"/>
+	<mkdir dir="${basedir}/work"/>
+	<jasper
+		validateXml="false"
+		uriroot="${WEB_INF}/jsp"
+		trimspaces="true"
+		outputdir="${basedir}/work"/>
+</target>
+
+<target name="jsp.compile" depends="jsp.pre.compile">
+	<javac srcdir="${basedir}/work" encoding="UTF-8" debug="on" optimize="off"/>
+		<classpath refid="compile.class.path"/>
+	</javac>
+</target>
+
+<target name="build.compile" depends="jsp.compile">
 	<delete dir="${classes}"/>
 	<mkdir dir="${classes}"/>
   <javac srcdir="${WEB_INF}/src" destdir="${classes}" encoding="UTF-8" debug="on" optimize="off">

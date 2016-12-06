@@ -13,10 +13,7 @@ cd $BASE
 git checkout .
 git pull
 
-rm -rf $BASE/work
-mkdir $BASE/work
-
-ant -f build.xml
+ant -f build.xml build.compile
 
 $TOM/bin/shutdown.sh
 $TOM/bin/startup.sh
