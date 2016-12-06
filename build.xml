@@ -7,21 +7,23 @@
 <property name="lib" value="${WEB_INF}/lib"/>
 
 <path id="compile.class.path">
-	 <fileset file="${TOMCAT_HOME}/lib/servlet-api.jar"/>
+	 <fileset file="${TOMCAT_HOME}/lib/">
+		<include name="**/*.jar"/>
+	</fileset>
 </path>
 
 <target name="jsp.pre.compile">
+	<taskdef name="jasper" classname="org.apache.jasper.JspC" classpathref="compile.class.path" />
 	<delete dir="${basedir}/work"/>
 	<mkdir dir="${basedir}/work"/>
 	<jasper
-		validateXml="false"
+		outputDir="${basedir}/work"
 		uriroot="${WEB_INF}/jsp"
-		trimspaces="true"
-		outputdir="${basedir}/work"/>
+		trimspaces="true"/>
 </target>
 
 <target name="jsp.compile" depends="jsp.pre.compile">
-	<javac srcdir="${basedir}/work" encoding="UTF-8" debug="on" optimize="off"/>
+	<javac srcdir="${basedir}/work" encoding="UTF-8" debug="on" optimize="off">
 		<classpath refid="compile.class.path"/>
 	</javac>
 </target>
